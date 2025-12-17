@@ -50,6 +50,9 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
+            this.ulogatB = new System.Windows.Forms.TextBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // IDtB
@@ -58,6 +61,7 @@
             this.IDtB.Name = "IDtB";
             this.IDtB.Size = new System.Drawing.Size(84, 20);
             this.IDtB.TabIndex = 0;
+            this.IDtB.TextChanged += new System.EventHandler(this.IDtB_TextChanged);
             // 
             // prezimetB
             // 
@@ -65,6 +69,7 @@
             this.prezimetB.Name = "prezimetB";
             this.prezimetB.Size = new System.Drawing.Size(84, 20);
             this.prezimetB.TabIndex = 1;
+            this.prezimetB.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.prezimetB_MaskInputRejected);
             // 
             // jmbgtB
             // 
@@ -100,6 +105,7 @@
             this.adresatB.Name = "adresatB";
             this.adresatB.Size = new System.Drawing.Size(84, 20);
             this.adresatB.TabIndex = 6;
+            this.adresatB.TextChanged += new System.EventHandler(this.adresatB_TextChanged);
             // 
             // label1
             // 
@@ -191,6 +197,7 @@
             this.button2.TabIndex = 23;
             this.button2.Text = "<";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -200,6 +207,7 @@
             this.button3.TabIndex = 24;
             this.button3.Text = "dodaj";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -209,6 +217,7 @@
             this.button4.TabIndex = 25;
             this.button4.Text = "menjaj";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -218,6 +227,7 @@
             this.button5.TabIndex = 26;
             this.button5.Text = "brisi";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
@@ -227,6 +237,7 @@
             this.button6.TabIndex = 27;
             this.button6.Text = ">";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
@@ -236,12 +247,33 @@
             this.button7.TabIndex = 28;
             this.button7.Text = ">>";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // ulogatB
+            // 
+            this.ulogatB.Location = new System.Drawing.Point(595, 473);
+            this.ulogatB.Name = "ulogatB";
+            this.ulogatB.Size = new System.Drawing.Size(84, 20);
+            this.ulogatB.TabIndex = 29;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(507, 476);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(33, 13);
+            this.label9.TabIndex = 30;
+            this.label9.Text = "uloga";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.ClientSize = new System.Drawing.Size(1397, 626);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.ulogatB);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
@@ -266,6 +298,7 @@
             this.Controls.Add(this.IDtB);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -296,6 +329,9 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.TextBox ulogatB;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Label label9;
     }
 }
 
