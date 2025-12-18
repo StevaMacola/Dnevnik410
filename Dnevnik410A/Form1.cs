@@ -90,7 +90,7 @@ namespace Dnevnik410A
             naredba += "adresa='" + adresatB.Text + "',";
             naredba += "jmbg='" + jmbgtB.Text + "',";
             naredba += "email='" + mailtB.Text + "',";
-            naredba += "lozinka='" + lozinkatB.Text + "',";
+            naredba += "pass='" + lozinkatB.Text + "',";
             naredba += "uloga='" + ulogatB.Text + "'";
             naredba += "WHERE id = " + IDtB.Text;
             SqlConnection veza = Konekcija.povezi();
@@ -139,7 +139,7 @@ namespace Dnevnik410A
             naredba = naredba + jmbgtB.Text + "','";
             naredba = naredba + mailtB.Text + "','";
             naredba = naredba + lozinkatB.Text + "',1)";
-            SqlConnection veza = new SqlConnection("Data Source=DESKTOP-ASD8HJ9\\SQLEXPRESS;Initial catalog=dnevnik410A;Integrated security=true");
+            SqlConnection veza = new SqlConnection("Data Source=DESKTOP-8ADJLUH\\SQLEXPRESS;Initial catalog=dnevnik410A;Integrated security=true");
             SqlCommand komanda = new SqlCommand(naredba, veza);
             veza.Open();
             komanda.ExecuteNonQuery();
@@ -192,6 +192,11 @@ namespace Dnevnik410A
         }
 
         private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
         {
 
         }
