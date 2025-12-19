@@ -41,7 +41,8 @@ namespace Dnevnik410A
 
         private void raspodelaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Raspodela nova = new Raspodela();
+            nova.ShowDialog();
         }
     }
 }
