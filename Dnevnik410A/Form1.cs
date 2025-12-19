@@ -139,7 +139,7 @@ namespace Dnevnik410A
             naredba = naredba + jmbgtB.Text + "','";
             naredba = naredba + mailtB.Text + "','";
             naredba = naredba + lozinkatB.Text + "',1)";
-            SqlConnection veza = new SqlConnection("Data Source=DESKTOP-8ADJLUH\\SQLEXPRESS;Initial catalog=dnevnik410A;Integrated security=true");
+            SqlConnection veza = Konekcija.povezi();
             SqlCommand komanda = new SqlCommand(naredba, veza);
             veza.Open();
             komanda.ExecuteNonQuery();
