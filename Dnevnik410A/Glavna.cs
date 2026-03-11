@@ -44,5 +44,25 @@ namespace Dnevnik410A
             Raspodela nova = new Raspodela();
             nova.ShowDialog();
         }
+
+        private void skolskaGodinaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sifarnik nova = new sifarnik("skolska_godina");
+        }
+
+        private void predmetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sifarnik nova = new sifarnik("predmet");
+        }
+
+        private void smerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sifarnik nova = new sifarnik("smer");
+        }
+
+        private void Glavna_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
