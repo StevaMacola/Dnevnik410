@@ -24,13 +24,14 @@ namespace Dnevnik410A
 
         private void osobaToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            Form1 nova = new Form1();
+            sifarnik nova = new sifarnik("Osoba");
             nova.ShowDialog();
         }
 
         private void odeljenjeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            sifarnik nova = new sifarnik("Odeljenje");
+            nova.ShowDialog();
         }
 
         private void upisnicaToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -66,6 +67,11 @@ namespace Dnevnik410A
         private void Glavna_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void datotekeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

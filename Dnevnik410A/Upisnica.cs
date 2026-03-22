@@ -8,11 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Dnevnik410A
 {
     public partial class Upisnica : Form
     {
+        int br_reda;
+        DataTable osoba, upisnica, odeljenje;
+
         public Upisnica()
         {
             InitializeComponent();
@@ -70,7 +74,7 @@ namespace Dnevnik410A
             Combo2Populate();
             Combo3Populate();
             DataGridPopulate();
-            textBox1.Enabled = false;
+            comboBox4.Enabled = true;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -91,30 +95,30 @@ namespace Dnevnik410A
                 comboBox1.SelectedValue = dataGridView1.Rows[broj_sloga].Cells["god_id"].Value.ToString();
                 comboBox2.SelectedValue = dataGridView1.Rows[broj_sloga].Cells["odel_id"].Value.ToString();
                 comboBox3.SelectedValue = dataGridView1.Rows[broj_sloga].Cells["os_id"].Value.ToString();
-                textBox1.Text = dataGridView1.Rows[broj_sloga].Cells["id"].Value.ToString();
-            }
+                comboBox4.Text = dataGridView1.Rows[broj_sloga].Cells["id"].Value.ToString();
+            };
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string naredba = "INSERT INTO upisnica (odeljenje_id, osoba_id) VALUES(";
-            naredba += comboBox2.SelectedValue.ToString() + ", ";
-            naredba += comboBox3.SelectedValue.ToString() + ")";
+            string komanda = "INSERT INTO upisnica VALUES(";
+            komanda = komanda + comboBox2.SelectedValue.ToString();
+            komanda = komanda + "," + comboBox3.SelectedValue.ToString();
+            komanda = komanda + ")";
+
             SqlConnection veza = Konekcija.povezi();
-            SqlCommand komanda = new SqlCommand(naredba, veza);
+            SqlCommand naredba = new SqlCommand(komanda, veza);
             try
             {
                 veza.Open();
-                komanda.ExecuteNonQuery();
+                naredba.ExecuteNonQuery();
                 veza.Close();
             }
             catch (Exception greska)
             {
-                MessageBox.Show(greska.Message);
+                MessageBox.Show(greska.GetType().ToString());
             }
-
-            DataGridPopulate();
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -126,7 +130,7 @@ namespace Dnevnik410A
         {
             string naredba = "UPDATE upisnica SET osoba_id = " + comboBox3.SelectedValue.ToString();
             naredba += ", odeljenje_id=" + comboBox2.SelectedValue.ToString();
-            naredba += " WHERE id=" + textBox1.Text;
+            naredba += " WHERE id=" + comboBox4.Text;
             SqlConnection veza = Konekcija.povezi();
             SqlCommand komanda = new SqlCommand(naredba, veza);
             try
@@ -142,9 +146,14 @@ namespace Dnevnik410A
             DataGridPopulate();
         }
 
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
-            string naredba = "DELETE FROM upisnica WHERE id=" + textBox1.Text;
+            string naredba = "DELETE FROM upisnica WHERE id=" + comboBox4.Text;
             SqlConnection veza = Konekcija.povezi();
             SqlCommand komanda = new SqlCommand(naredba, veza);
             try
