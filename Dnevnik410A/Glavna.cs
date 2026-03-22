@@ -47,17 +47,20 @@ namespace Dnevnik410A
 
         private void skolskaGodinaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            sifarnik nova = new sifarnik("skolska_godina");
+            sifarnik nova = new sifarnik("Skolska_godina");
+            nova.ShowDialog();
         }
 
         private void predmetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            sifarnik nova = new sifarnik("predmet");
+            sifarnik nova = new sifarnik("Predmet");
+            nova.ShowDialog();
         }
 
         private void smerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            sifarnik nova = new sifarnik("smer");
+            sifarnik nova = new sifarnik("Smer");
+            nova.ShowDialog();
         }
 
         private void Glavna_FormClosed(object sender, FormClosedEventArgs e)

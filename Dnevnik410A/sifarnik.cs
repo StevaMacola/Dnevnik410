@@ -26,7 +26,7 @@ namespace Dnevnik410A
 
         private void sifarnik_Load(object sender, EventArgs e)
         {
-            Adapter = new SqlDataAdapter("SELECT * FROM"+ime_tabela, Konekcija.povezi());
+            Adapter = new SqlDataAdapter("SELECT * FROM "+ime_tabela, Konekcija.povezi());
             podaci = new DataTable();
             Adapter.Fill(podaci);
             dataGridView1.DataSource = podaci;
@@ -37,7 +37,16 @@ namespace Dnevnik410A
             DataTable menjamo = podaci.GetChanges();
             //DataRowState: Modified - promenjeni, Added - dodati, Deleted - obrisani, Unchanged - nepromenjeni
             Adapter.UpdateCommand = new SqlCommandBuilder(Adapter).GetUpdateCommand();
-            Adapter.Update(menjamo);
+            if (menjamo != null)
+            {
+                Adapter.Update(menjamo);
+                this.Close();
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

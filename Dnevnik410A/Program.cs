@@ -16,7 +16,7 @@ namespace Dnevnik410A
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Upisnica());
+            Application.Run(new Glavna());
         }
     }
 }
