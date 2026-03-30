@@ -70,11 +70,14 @@ namespace Dnevnik410A
 
         private void Upisnica_Load(object sender, EventArgs e)
         {
-            Combo1Populate();
+            Combo1Populate();        
             Combo2Populate();
+            comboBox2.SelectedIndex = -1;
+          //  comboBox3.Enabled = false;
             Combo3Populate();
+            comboBox3.SelectedIndex = -1;
             DataGridPopulate();
-            comboBox4.Enabled = true;
+           // textBox1.Enabled = false;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -95,30 +98,30 @@ namespace Dnevnik410A
                 comboBox1.SelectedValue = dataGridView1.Rows[broj_sloga].Cells["god_id"].Value.ToString();
                 comboBox2.SelectedValue = dataGridView1.Rows[broj_sloga].Cells["odel_id"].Value.ToString();
                 comboBox3.SelectedValue = dataGridView1.Rows[broj_sloga].Cells["os_id"].Value.ToString();
-                comboBox4.Text = dataGridView1.Rows[broj_sloga].Cells["id"].Value.ToString();
+                textBox1.Text = dataGridView1.Rows[broj_sloga].Cells["id"].Value.ToString();
             };
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string komanda = "INSERT INTO upisnica VALUES(";
-            komanda = komanda + comboBox2.SelectedValue.ToString();
-            komanda = komanda + "," + comboBox3.SelectedValue.ToString();
-            komanda = komanda + ")";
-
+            string naredba = "INSERT INTO upisnica (odeljenje_id, osoba_id) VALUES(";
+            naredba += comboBox2.SelectedValue.ToString() + ", ";
+            naredba += comboBox3.SelectedValue.ToString() + ")";
             SqlConnection veza = Konekcija.povezi();
-            SqlCommand naredba = new SqlCommand(komanda, veza);
+            SqlCommand komanda = new SqlCommand(naredba, veza);
             try
             {
                 veza.Open();
-                naredba.ExecuteNonQuery();
+                komanda.ExecuteNonQuery();
                 veza.Close();
             }
             catch (Exception greska)
             {
-                MessageBox.Show(greska.GetType().ToString());
+                MessageBox.Show(greska.Message);
             }
+
+            DataGridPopulate();
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -130,7 +133,7 @@ namespace Dnevnik410A
         {
             string naredba = "UPDATE upisnica SET osoba_id = " + comboBox3.SelectedValue.ToString();
             naredba += ", odeljenje_id=" + comboBox2.SelectedValue.ToString();
-            naredba += " WHERE id=" + comboBox4.Text;
+            naredba += " WHERE id=" + textBox1.Text;
             SqlConnection veza = Konekcija.povezi();
             SqlCommand komanda = new SqlCommand(naredba, veza);
             try
@@ -151,9 +154,20 @@ namespace Dnevnik410A
 
         }
 
+        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.IsHandleCreated && comboBox1.Focused) 
+            {
+                Combo2Populate();
+                comboBox2.SelectedIndex = -1;
+                comboBox3.SelectedIndex = -1;
+                //comboBox3.Enabled = false;
+            }
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
-            string naredba = "DELETE FROM upisnica WHERE id=" + comboBox4.Text;
+            string naredba = "DELETE FROM upisnica WHERE id=" + textBox1.Text;
             SqlConnection veza = Konekcija.povezi();
             SqlCommand komanda = new SqlCommand(naredba, veza);
             try
@@ -171,13 +185,7 @@ namespace Dnevnik410A
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SqlConnection veza = Konekcija.povezi();
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT id FROM odeljenje", veza);
-            DataTable odeljenje = new DataTable();
-            adapter.Fill(odeljenje);
-            comboBox4.DataSource = odeljenje;
-            comboBox4.ValueMember = "id";
-            comboBox4.DisplayMember = "naziv";
+            
         }
     }
 }
